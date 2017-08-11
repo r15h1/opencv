@@ -23,7 +23,7 @@ while True:
     roi = None
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (100, 250, 100), 2)
 
         if (w > 0 and h > 0):
             roi = frame[y:y+h, x:x+w]
@@ -32,9 +32,9 @@ while True:
     cv2.imshow('Video', frame) 
 
     #display the cropped
-    if roi is not None:
-        if roi.size:
-            cv2.imshow('Cropped', roi)
+    #if roi is not None:
+    #    if roi.size:
+    #        cv2.imshow('Cropped', roi)
         
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
