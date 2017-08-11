@@ -34,11 +34,17 @@ def get_images_and_labels(path):
 
 cascadePath = "C:\Programagic\OpenCV\A-FaceDetection\haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath)
-path = 'C:\Programagic\OpenCV\A-FaceDetection\Faces' 
-images, labels = get_images_and_labels(path)
-
 recognizer = cv2.face.createLBPHFaceRecognizer()
-recognizer.train(images, np.array(labels))
+
+if os.path.exists('trainer.yml'):
+    print 'loading recognizer'
+    recognizer.load('trainer.yml')
+else:
+    print 'training recognizer'
+    path = 'C:\Programagic\OpenCV\A-FaceDetection\Faces' 
+    images, labels = get_images_and_labels(path)
+    recognizer.train(images, np.array(labels))
+    recognizer.save('trainer.yml')
 
 #capture video
 video_capture = cv2.VideoCapture(0)

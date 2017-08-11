@@ -1,0 +1,9 @@
+node_modules
+.idea
+.DS_STORE
+Faces*
+*.jpg
+*.png
+*.gif
+*.jpeg
+*.yml
