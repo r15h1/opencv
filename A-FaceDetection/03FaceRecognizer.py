@@ -19,7 +19,12 @@ def get_images_and_labels(path):
         nbr = int(os.path.split(image_path)[1].split(".")[0].replace("rishi", "").replace("aman", ""))
         #nbr = os.path.split(image_path)[1].split(".")[0]
         # Detect the face in the image
-        faces = faceCascade.detectMultiScale(image)
+        faces = faceCascade.detectMultiScale(image, 
+            scaleFactor=1.1,
+            minNeighbors=5,
+            minSize=(30, 30),
+            flags=cv2.CASCADE_SCALE_IMAGE
+        )
         # If face is detected, append the face to images and the label to labels
         for (x, y, w, h) in faces:
             print "adding ", nbr
@@ -82,7 +87,7 @@ while True:
             name = "intruder {0}".format(int(conf))
 
         #print name, conf
-        cv2.putText(frame,name,(int(x), int(y)), font, 1,(200,250,230),2)
+        cv2.putText(frame,name,(int(x), int(y)), font, 1,(255,255,255),2)
 
         if (w > 0 and h > 0):
             roi = frame[y:y+h, x:x+w]
