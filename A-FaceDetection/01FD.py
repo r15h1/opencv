@@ -32,9 +32,9 @@ while True:
     cv2.imshow('Video', frame) 
 
     #display the cropped
-    #if roi is not None:
-    #    if roi.size:
-    #        cv2.imshow('Cropped', roi)
+    if roi is not None:
+        if roi.size:
+            cv2.imshow('Cropped', roi)
         
 
     if cv2.waitKey(1) & 0xFF == ord('q'):

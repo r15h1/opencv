@@ -16,7 +16,7 @@ def get_images_and_labels(path):
         # Convert the image format into numpy array
         image = np.array(image_pil, 'uint8')
         # Get the label of the image
-        nbr = int(os.path.split(image_path)[1].split(".")[0].replace("rishi", "").replace("aman", ""))
+        nbr = int(os.path.split(image_path)[1].split(".")[0])
         #nbr = os.path.split(image_path)[1].split(".")[0]
         # Detect the face in the image
         faces = faceCascade.detectMultiScale(image, 
@@ -79,10 +79,16 @@ while True:
 
         
         if conf < 100:
-            if nbr_predicted >= 1 and nbr_predicted <= 5:
+            if nbr_predicted == 5:
+                name = "neymar {0}".format(int(conf))
+            elif nbr_predicted == 4:
+                name = "papi {0}".format(int(conf))
+            elif nbr_predicted == 3:
+                name = "mami {0}".format(int(conf))
+            elif nbr_predicted == 2:
+                name = "kwikwi {0}".format(int(conf))
+            elif nbr_predicted == 1:
                 name = "rishi {0}".format(int(conf))
-            elif nbr_predicted <= 10:
-                name = "aman {0}".format(int(conf))
         else:
             name = "intruder {0}".format(int(conf))
 
